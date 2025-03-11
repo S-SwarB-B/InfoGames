@@ -12,6 +12,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -24,6 +25,9 @@ fun RegScreen(navController: NavController){
         mutableStateOf("")
     }
     val passwordState = remember {
+        mutableStateOf("")
+    }
+    val passwordState2 = remember {
         mutableStateOf("")
     }
 
@@ -41,23 +45,24 @@ fun RegScreen(navController: NavController){
             emailState.value = it
         }
 
-        TextFieldRegScreen(
+        TextFieldRegScreen_Password(
             text = passwordState.value,
             label = "Пароль"
         ) {
             passwordState.value = it
         }
-        TextFieldRegScreen(
-            text = passwordState.value,
+        TextFieldRegScreen_Password(
+            text = passwordState2.value,
             label = "Повторите пароль"
         ) {
-            passwordState.value = it
+            passwordState2.value = it
         }
         ButtonRegScreen(
             text = "ЗАРЕГИСТРИРОВАТЬСЯ"
         ) {}
 
         Text("Вернуться к окну входа", fontSize = 10.sp, color = Color(0xff9b2d30),
-            modifier = Modifier.clickable { navController.navigate(Screens.LogIn) })
+            modifier = Modifier.clickable { navController.navigate(Screens.LogIn) },
+            fontWeight = FontWeight.Bold)
     }
 }

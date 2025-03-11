@@ -12,6 +12,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -41,7 +43,7 @@ fun LoginScreen(navController: NavController){
             emailState.value = it
         }
 
-        TextFieldLogScreen(
+        TextFieldLogScreen_Password(
             text = passwordState.value,
             label = "Пароль"
         ) {
@@ -53,6 +55,7 @@ fun LoginScreen(navController: NavController){
         ) {}
 
         Text("Зарегистрироваться", fontSize = 10.sp, color = Color(0xff9b2d30),
-            modifier = Modifier.clickable { navController.navigate(Screens.Reg) })
+            modifier = Modifier.clickable { navController.navigate(Screens.Reg) },
+            fontWeight = FontWeight.Bold)
     }
 }
