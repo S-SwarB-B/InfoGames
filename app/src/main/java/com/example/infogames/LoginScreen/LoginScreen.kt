@@ -52,7 +52,8 @@ fun LoginScreen(navController: NavController){
 
         ButtonLogScreen(
             text = "ВОЙТИ"
-        ) {}
+        ) {
+        }
 
         Text("Зарегистрироваться", fontSize = 10.sp, color = Color(0xff9b2d30),
             modifier = Modifier.clickable { navController.navigate(Screens.Reg) },
