@@ -2,16 +2,16 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.compose.compiler)
-    kotlin("plugin.serialization") version "2.1.10"
+    kotlin("plugin.serialization") version "2.1.0"
 }
 
 android {
-    namespace = "com.example.infogames"
-    compileSdk = 35
+    namespace = "com.example.supabasesimpleproject"
+    compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.infogames"
-        minSdk = 24
+        applicationId = "com.example.supabasesimpleproject"
+        minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
@@ -61,8 +61,6 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.navigation.compose)
-    implementation(libs.androidx.animation.core.lint)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
@@ -71,8 +69,25 @@ dependencies {
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
 
-    implementation(platform("io.github.jan-tennert.supabase:bom:3.1.3"))
-    implementation("io.github.jan-tennert.supabase:postgrest-kt")
 
-    implementation("io.ktor:ktor-client-android:3.1.1")
+    //Supabase
+    implementation(platform(libs.bom))
+    implementation(libs.postgrest.kt)
+    implementation(libs.auth.kt)
+    implementation(libs.realtime.kt)
+    implementation (libs.storage.kt)
+    //Ktor
+    implementation(libs.ktor.client.android)
+
+    //Navigation
+    implementation (libs.androidx.navigation.compose)
+
+    //ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.compose)
+
+    //LiveData
+    implementation (libs.androidx.runtime.livedata)
+
+    //Coil
+    implementation(libs.coil.compose)
 }

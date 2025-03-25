@@ -5,14 +5,18 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.example.infogames.Navigate.Navigate
+import io.github.jan.supabase.auth.Auth
 import io.github.jan.supabase.createSupabaseClient
 import io.github.jan.supabase.postgrest.Postgrest
 
-val supabase = createSupabaseClient(
-    supabaseUrl = "https://usltlumxagvdotvlhyxz.supabase.co",
-    supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVzbHRsdW14YWd2ZG90dmxoeXh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDE2Mzc1NzEsImV4cCI6MjA1NzIxMzU3MX0.GkB9wtkKP_cLsE1NkQGI1m6U9n5uIvo78Ddhho8xFag"
-) {
-    install(Postgrest)
+object Constant {
+    val supabase = createSupabaseClient(
+        supabaseUrl = "https://oruuiavqoegutrgpvugh.supabase.co",
+        supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9ydXVpYXZxb2VndXRyZ3B2dWdoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjUzNTcyMjYsImV4cCI6MjA0MDkzMzIyNn0.567sJ3LdvvVw9HSkPCQugd2rYU9o8o1ZI1cr3J2zgf4"
+    ) {
+        install(Postgrest)
+        install(Auth)
+    }
 }
 
 class MainActivity : ComponentActivity() {

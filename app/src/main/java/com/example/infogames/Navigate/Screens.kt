@@ -4,4 +4,5 @@ object Screens {
     const val LoadScreen = "Load"
     const val LogIn = "LogIn"
     const val Reg = "Reg"
+    const val Main = "Main"
 }

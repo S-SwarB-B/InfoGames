@@ -12,15 +12,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.infogames.Navigate.Screens
+import com.example.infogames.ViewModelsSupaBase.SigInView
 
 @Composable
-fun LoginScreen(navController: NavController){
+fun LoginScreen(navController: NavController, signInView: SigInView = viewModel()){
 
     val emailState = remember {
         mutableStateOf("")
@@ -29,10 +30,12 @@ fun LoginScreen(navController: NavController){
         mutableStateOf("")
     }
 
-    Column(modifier = Modifier.fillMaxSize().padding(
-        start = 45.dp,
-        end = 45.dp
-    ),
+    Column(modifier = Modifier
+        .fillMaxSize()
+        .padding(
+            start = 45.dp,
+            end = 45.dp
+        ),
            horizontalAlignment = Alignment.CenterHorizontally,
            verticalArrangement = Arrangement.spacedBy(10.dp, alignment = Alignment.CenterVertically)
     ) {

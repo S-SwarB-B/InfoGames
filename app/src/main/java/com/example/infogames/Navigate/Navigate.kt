@@ -27,5 +27,8 @@ fun Navigate(){
             composable(Screens.Reg) {
                 RegScreen(navController)
             }
+            composable(Screens.Main) {
+                RegScreen(navController)
+            }
         }
 }
