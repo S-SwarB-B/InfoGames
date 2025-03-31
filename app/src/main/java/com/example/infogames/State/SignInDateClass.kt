@@ -1,8 +1,8 @@
 package com.example.infogames.State
 
 data class SignInDateClass(
-    val Login: String = "",
-    val Password: String = "",
+    val email: String = "",
+    val password: String = "",
     var ErrorLogSIG: Boolean = false,
     var ErrorPasSIG: Boolean = false
 )

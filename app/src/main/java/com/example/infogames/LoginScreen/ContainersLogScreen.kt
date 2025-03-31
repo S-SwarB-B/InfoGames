@@ -1,7 +1,7 @@
 package com.example.infogames.LoginScreen
 
-import android.graphics.drawable.Icon
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -11,7 +11,6 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -19,7 +18,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -31,11 +29,11 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun TextFieldLogScreen(
-    text: String,
+    txtvalue: String,
     label: String,
     onValueChange: (String) ->  Unit
 ){
-    TextField(value = text, onValueChange = {
+    TextField(value = txtvalue, onValueChange = {
         onValueChange(it)
     },
         shape = RoundedCornerShape(15.dp),
@@ -111,6 +109,23 @@ fun ButtonLogScreen(
         colors = ButtonDefaults.buttonColors(
         containerColor = Color(0xff9b2d30)
     ),
+        modifier = Modifier.width(150.dp)
+    ) {
+        Text(text = text)
+    }
+}
+@Composable
+fun ButtonLogScreenLoading(
+    text: String,
+    onClick: () -> Unit
+){
+    Button(onClick = {
+        onClick()
+    },
+        enabled = false,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xff9b2d30)
+        ),
         modifier = Modifier.width(150.dp)
     ) {
         Text(text = text)

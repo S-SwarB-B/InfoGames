@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -18,17 +20,14 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.infogames.Navigate.Screens
+import com.example.infogames.State.ResultDataClass
 import com.example.infogames.ViewModelsSupaBase.SigInView
 
 @Composable
 fun LoginScreen(navController: NavController, signInView: SigInView = viewModel()){
 
-    val emailState = remember {
-        mutableStateOf("")
-    }
-    val passwordState = remember {
-        mutableStateOf("")
-    }
+    val timeState by signInView.resultState.collectAsState() //Получение состояния из SignInView
+    val uiDataClass = signInView.uiDataClass //Получение состояния UI
 
     Column(modifier = Modifier
         .fillMaxSize()
@@ -39,23 +38,44 @@ fun LoginScreen(navController: NavController, signInView: SigInView = viewModel(
            horizontalAlignment = Alignment.CenterHorizontally,
            verticalArrangement = Arrangement.spacedBy(10.dp, alignment = Alignment.CenterVertically)
     ) {
+
         TextFieldLogScreen(
-            text = emailState.value,
-            label = "Логин или Email"
-        ) {
-            emailState.value = it
-        }
+            txtvalue = uiDataClass.email,
+            label = "Логин или Email",
+            onValueChange = {it -> signInView.updateDataClass(uiDataClass.copy(email = it))}
+        )
 
         TextFieldLogScreen_Password(
-            text = passwordState.value,
-            label = "Пароль"
-        ) {
-            passwordState.value = it
-        }
-
-        ButtonLogScreen(
-            text = "ВОЙТИ"
-        ) {
+            text = uiDataClass.password,
+            label = "Пароль",
+            onValueChange = {it -> signInView.updateDataClass(uiDataClass.copy(password = it))}
+        )
+        when (timeState){
+            is ResultDataClass.Error -> {
+                Text("Неверный логин или пароль", fontSize = 20.sp, color = Color(0xff9b2d30),
+                    modifier = Modifier.clickable { navController.navigate(Screens.Reg) },
+                    fontWeight = FontWeight.Bold)
+                ButtonLogScreen(
+                    text = "ВОЙТИ"
+                ){
+                    signInView.signIn()
+                }
+            }
+            is ResultDataClass.Initialized -> {
+                ButtonLogScreen(
+                    text = "ВОЙТИ"
+                ){
+                    signInView.signIn()
+                }
+            }
+            is ResultDataClass.Loading -> {
+                ButtonLogScreenLoading(
+                    text = "Загрузка..."
+                ){}
+            }
+            is ResultDataClass.Success -> {
+                navController.navigate(Screens.Main){}
+            }
         }
 
         Text("Зарегистрироваться", fontSize = 10.sp, color = Color(0xff9b2d30),
