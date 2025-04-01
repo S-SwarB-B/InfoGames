@@ -112,3 +112,20 @@ fun ButtonRegScreen(
         Text(text = text)
     }
 }
+@Composable
+fun ButtonRegScreenLoading(
+    text: String,
+    onClick: () -> Unit
+){
+    Button(onClick = {
+        onClick()
+    },
+        enabled = false,
+        colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xff9b2d30)
+        ),
+        modifier = Modifier.width(250.dp)
+    ) {
+        Text(text = text)
+    }
+}

@@ -9,8 +9,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -41,7 +39,7 @@ fun LoginScreen(navController: NavController, signInView: SigInView = viewModel(
 
         TextFieldLogScreen(
             txtvalue = uiDataClass.email,
-            label = "Логин или Email",
+            label = "Email",
             onValueChange = {it -> signInView.updateDataClass(uiDataClass.copy(email = it))}
         )
 
@@ -52,8 +50,7 @@ fun LoginScreen(navController: NavController, signInView: SigInView = viewModel(
         )
         when (timeState){
             is ResultDataClass.Error -> {
-                Text("Неверный логин или пароль", fontSize = 20.sp, color = Color(0xff9b2d30),
-                    modifier = Modifier.clickable { navController.navigate(Screens.Reg) },
+                Text((timeState as ResultDataClass.Error).message, fontSize = 15.sp, color = Color(0xff9b2d30),
                     fontWeight = FontWeight.Bold)
                 ButtonLogScreen(
                     text = "ВОЙТИ"

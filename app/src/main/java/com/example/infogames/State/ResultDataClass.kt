@@ -1,6 +1,5 @@
 package com.example.infogames.State
 
-
 sealed class ResultDataClass {
     data object Loading : ResultDataClass()
     data object Initialized : ResultDataClass()

@@ -28,8 +28,7 @@ class SigInView : ViewModel(){
 
     fun signIn(){ //Функция входа в систему
         _resultDataClass.value = ResultDataClass.Loading //Изменение состояния загрузки
-
-            viewModelScope.launch { //Передача данных из приложения в в таблицу Auth Supabase
+            viewModelScope.launch {
                 try {
                     Constant.supabase.auth.signInWith(Email){
                         email = _uiDataClass.value.email
@@ -38,7 +37,7 @@ class SigInView : ViewModel(){
                     _resultDataClass.value = ResultDataClass.Success("Ошибок нет")
                 }
                 catch (_ex : AuthRestException){ //Обработка исключения
-                    _resultDataClass.value = ResultDataClass.Error("Ошибка получения данных") //Изменение состояния загрузки
+                    _resultDataClass.value = ResultDataClass.Error("Неверный логин или пароль") //Изменение состояния загрузки
                 }
             }
         }
