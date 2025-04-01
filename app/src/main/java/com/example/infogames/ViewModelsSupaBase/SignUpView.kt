@@ -1,14 +1,18 @@
 package com.example.infogames.ViewModelsSupaBase
 
+
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.infogames.Constant
+import com.example.infogames.Constant.supabase
+import com.example.infogames.Tables.Profile
 import com.example.infogames.State.ResultDataClass
 import com.example.infogames.State.SignUpDataClass
 import io.github.jan.supabase.auth.auth
 import io.github.jan.supabase.auth.exception.AuthRestException
 import io.github.jan.supabase.auth.providers.builtin.Email
+import io.github.jan.supabase.postgrest.from
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -37,7 +41,12 @@ class SignUpView : ViewModel(){
                             email = _uiDataClass.value.email
                             password = _uiDataClass.value.password
                         }
-                        _resultDataClass.value = ResultDataClass.Success("Ошибок нет")
+                        val id_user = Constant.supabase.auth.currentUserOrNull()
+                        if (id_user != null){
+                            val _profile = Profile(id_user.id,_uiDataClass.value.username, _uiDataClass.value.surname)
+                            supabase.from(schema = "public", table = "user_profile").insert(_profile)
+                        }
+                        _resultDataClass.value = ResultDataClass.Success("Нет ошибок")
                     }
                     catch (ex : AuthRestException){
                         _resultDataClass.value = ResultDataClass.Error("Ошибка получения данных")

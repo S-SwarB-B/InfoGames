@@ -34,9 +34,9 @@ class SigInView : ViewModel(){
                         email = _uiDataClass.value.email
                         password = _uiDataClass.value.password
                     }
-                    _resultDataClass.value = ResultDataClass.Success("Ошибок нет")
+                    _resultDataClass.value = ResultDataClass.Success("Нет ошибок")
                 }
-                catch (_ex : AuthRestException){ //Обработка исключения
+                catch (ex : AuthRestException){ //Обработка исключения
                     _resultDataClass.value = ResultDataClass.Error("Неверный логин или пароль") //Изменение состояния загрузки
                 }
             }

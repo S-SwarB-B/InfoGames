@@ -41,8 +41,13 @@ fun RegScreen(navController: NavController, signUpView: SignUpView = viewModel()
         )
         TextFieldRegScreen(
             text = uiDataClass.username,
-            label = "Никнейм",
+            label = "Имя",
             onValueChange = {it -> signUpView.updateDataClass(uiDataClass.copy(username = it))}
+        )
+        TextFieldRegScreen(
+            text = uiDataClass.surname,
+            label = "Фамилия",
+            onValueChange = {it -> signUpView.updateDataClass(uiDataClass.copy(surname = it))}
         )
         TextFieldRegScreen_Password(
             text = uiDataClass.password,
@@ -65,7 +70,7 @@ fun RegScreen(navController: NavController, signUpView: SignUpView = viewModel()
                 ButtonRegScreen( text = "ЗАРЕГИСТРИРОВАТЬСЯ") { signUpView.signUp() }
             }
             is ResultDataClass.Loading -> {
-                ButtonRegScreenLoading( text = "ЗАРЕГИСТРИРОВАТЬСЯ") { signUpView.signUp() }
+                ButtonRegScreenLoading( text = "Загрузка...") {}
             }
             is ResultDataClass.Success -> {
                 navController.navigate(Screens.LogIn)
