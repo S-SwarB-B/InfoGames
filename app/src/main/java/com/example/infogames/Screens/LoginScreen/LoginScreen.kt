@@ -1,4 +1,4 @@
-package com.example.infogames.LoginScreen
+package com.example.infogames.Screens.LoginScreen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

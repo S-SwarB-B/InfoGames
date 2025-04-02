@@ -1,4 +1,4 @@
-package com.example.infogames.RegScreen
+package com.example.infogames.Screens.RegScreen
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

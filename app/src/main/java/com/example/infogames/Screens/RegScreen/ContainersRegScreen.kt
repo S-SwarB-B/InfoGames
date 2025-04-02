@@ -1,7 +1,6 @@
-package com.example.infogames.LoginScreen
+package com.example.infogames.Screens.RegScreen
 
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -28,12 +27,12 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun TextFieldLogScreen(
-    txtvalue: String,
+fun TextFieldRegScreen(
+    text: String,
     label: String,
     onValueChange: (String) ->  Unit
 ){
-    TextField(value = txtvalue, onValueChange = {
+    TextField(value = text, onValueChange = {
         onValueChange(it)
     },
         shape = RoundedCornerShape(15.dp),
@@ -55,9 +54,8 @@ fun TextFieldLogScreen(
         }
     )
 }
-
 @Composable
-fun TextFieldLogScreen_Password(
+fun TextFieldRegScreen_Password(
     text: String,
     label: String,
     onValueChange: (String) ->  Unit
@@ -99,7 +97,7 @@ fun TextFieldLogScreen_Password(
     )
 }
 @Composable
-fun ButtonLogScreen(
+fun ButtonRegScreen(
     text: String,
     onClick: () -> Unit
 ){
@@ -107,15 +105,15 @@ fun ButtonLogScreen(
         onClick()
     },
         colors = ButtonDefaults.buttonColors(
-        containerColor = Color(0xff9b2d30)
-    ),
-        modifier = Modifier.width(150.dp)
+            containerColor = Color(0xff9b2d30)
+        ),
+        modifier = Modifier.width(250.dp)
     ) {
         Text(text = text)
     }
 }
 @Composable
-fun ButtonLogScreenLoading(
+fun ButtonRegScreenLoading(
     text: String,
     onClick: () -> Unit
 ){
@@ -126,7 +124,7 @@ fun ButtonLogScreenLoading(
         colors = ButtonDefaults.buttonColors(
             containerColor = Color(0xff9b2d30)
         ),
-        modifier = Modifier.width(150.dp)
+        modifier = Modifier.width(250.dp)
     ) {
         Text(text = text)
     }

@@ -1,4 +1,4 @@
-package com.example.infogames.LoadScreen
+package com.example.infogames.Screens.LoadScreen
 
 
 import androidx.compose.foundation.Image
