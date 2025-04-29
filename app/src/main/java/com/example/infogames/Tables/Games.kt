@@ -8,5 +8,7 @@ data class Games(
     val name: String,
     val description: String,
     val categoryId: String,
-    val image: String
+    val image: String,
+    val developer: String,
+    val creator: String
 )

@@ -57,18 +57,23 @@ class MainView : ViewModel(){
     }
 
     fun filterListGames(strFilt: String, categoryId: String?){
+        val filteredGamesAll = filterGames.filter { games ->
+            games.name.contains(strFilt) && games.categoryId == categoryId
+        }
         val filteredGames = filterGames.filter { games ->
             games.name.contains(strFilt)
         }
         val filtredGamesCategories = filterGames.filter{ games ->
             games.categoryId == categoryId
         }
-        if (categoryId == ""){
-            _games.value = filteredGames
+        if (categoryId != "" && strFilt != ""){
+            _games.value = filteredGamesAll
         }
-        else
-        {
+        else if (categoryId != "" && strFilt == "") {
             _games.value = filtredGamesCategories
+        }
+        else if (categoryId == "" && strFilt != "") {
+            _games.value = filteredGames
         }
     }
 }

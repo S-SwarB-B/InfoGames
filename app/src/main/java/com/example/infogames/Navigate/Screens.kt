@@ -5,4 +5,6 @@ object Screens {
     const val LogIn = "LogIn"
     const val Reg = "Reg"
     const val Main = "Main"
+    const val MoreDetailed = "MoreDetailed"
+    const val CreateScreen = "CreateScreen"
 }

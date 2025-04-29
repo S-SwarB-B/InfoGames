@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -28,13 +29,15 @@ fun GameCard(games: Games){
     ){
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(10.dp, alignment = Alignment.CenterVertically))
+            verticalArrangement = Arrangement.spacedBy(10.dp, alignment = Alignment.CenterVertically),
+            modifier = Modifier.padding(end = 10.dp, start = 10.dp, bottom = 15.dp, top = 10.dp))
         {
             Text(
                 text = games.name,
-                fontSize = 20.sp,
+                fontSize = 30.sp,
                 color = Color(0xff9b2d30),
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                textAlign = TextAlign.Center
             )
             AsyncImage(
                 model = games.image,
